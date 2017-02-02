@@ -40,7 +40,7 @@ INSTALLED_APPS = [
   'django.contrib.staticfiles',
   'corsheaders',
   'rest_framework',
-  'snippets.apps.SnippetsConfig',
+  'todos.apps.TodosConfig',
   'rest_framework.authtoken',
   'rest_framework_jwt',
   'oauth2_provider',
@@ -124,9 +124,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
-  # 'DEFAULT_PERMISSION_CLASSES': (
-  #   'rest_framework.permissions.IsAuthenticated',
-  # ),
+  'DEFAULT_PERMISSION_CLASSES': (
+    'rest_framework.permissions.IsAuthenticated',
+  ),
   'DEFAULT_AUTHENTICATION_CLASSES': (
     'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     'oauth2_provider.ext.rest_framework.OAuth2Authentication',
