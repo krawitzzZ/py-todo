@@ -16,8 +16,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
   class Meta:
     model = User
-    fields = ('url', 'id', 'username', 'email', 'password',
-              'date_joined', 'is_active', 'todos',)
+    fields = ('url', 'id', 'username', 'email', 'password', 'first_name',
+              'last_name', 'date_joined', 'is_active', 'todos',)
 
   todos = serializers.HyperlinkedRelatedField(many=True, read_only=True,
                                               view_name='todo-detail')
