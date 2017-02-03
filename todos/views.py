@@ -16,21 +16,19 @@ def generate_token(payload):
 
 
 class TodoViewSet(viewsets.ModelViewSet):
-  """
-    This viewset automatically provides `list`, `create`, `retrieve`,
-  `update` and `destroy` actions.
-  """
   queryset = Todo.objects.all()
   serializer_class = TodoSerializer
+
+  def get_queryset(self):
+    user = self.request.user
+    todos = Todo.objects.filter(owner=user)
+    return todos
 
   def perform_create(self, serializer):
     serializer.save(owner=self.request.user)
 
 
 class UserViewSet(viewsets.ModelViewSet):
-  """
-  This viewset automatically provides `list` and `detail` actions.
-  """
   queryset = User.objects.all()
   serializer_class = UserSerializer
 

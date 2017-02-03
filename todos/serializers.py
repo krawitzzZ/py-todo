@@ -35,7 +35,7 @@ class TodoSerializer(serializers.HyperlinkedModelSerializer):
     fields = ('url', 'id', 'created', 'updated',
               'owner', 'title', 'description', 'completed',)
 
-  owner = UserSerializer(exclude=('password',))
+  owner = UserSerializer(read_only=True, exclude=('password', 'todos',),)
 
   # return custom fields by serializer
   # __hidden_fields field is required in serializer
