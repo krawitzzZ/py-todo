@@ -2,17 +2,10 @@ from django.contrib.auth.models import User
 from rest_framework import permissions, viewsets, status
 from rest_framework.decorators import list_route
 from rest_framework.response import Response
-from rest_framework_jwt.settings import api_settings
 
 from todos.models import Todo
 from todos.serializers import TodoSerializer, UserSerializer
-
-
-def generate_token(payload):
-  jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
-  jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
-  token_payload = jwt_payload_handler(payload)
-  return jwt_encode_handler(token_payload)
+from todos.utils import generate_token
 
 
 class TodoViewSet(viewsets.ModelViewSet):
