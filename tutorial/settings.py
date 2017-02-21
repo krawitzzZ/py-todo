@@ -28,7 +28,7 @@ DEBUG = True
 
 APPEND_SLASH = False
 
-ALLOWED_HOSTS = ['todozz.herokuapp.com']
+ALLOWED_HOSTS = ['todozz.herokuapp.com', '127.0.0.1', 'localhost']
 
 # Application definition
 
