@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 import datetime
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -87,6 +88,17 @@ DATABASES = {
   }
 }
 
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': 'mydb',
+#     'USER': 'admin',
+#     'PASSWORD': 'admin',
+#     'HOST': '127.0.0.1',
+#     'PORT': '5432',
+#   }
+# }
+
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
@@ -123,6 +135,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+# Custom config
+
+
+# Database
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+# Django Rest Framework
 REST_FRAMEWORK = {
   'DEFAULT_PERMISSION_CLASSES': (
     'rest_framework.permissions.IsAuthenticated',
@@ -134,8 +155,10 @@ REST_FRAMEWORK = {
   'PAGE_SIZE': 10
 }
 
+# CORS
 CORS_ORIGIN_ALLOW_ALL = True
 
+# JSON Web Token
 JWT_AUTH = {
   'JWT_ALLOW_REFRESH': True,
   'JWT_EXPIRATION_DELTA': datetime.timedelta(days=2),
